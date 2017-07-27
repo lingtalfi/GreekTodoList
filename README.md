@@ -70,7 +70,7 @@ $todo = TodoList::create()->addTaskList(
     TaskList::create()->setLabel("Intégration")
         ->addTask(Task::create()->setLabel("carousel produits")->setNbDays(2))
         ->addTask(Task::create()->setLabel("Intégration pages mon compte")
-            ->addSubTask(Task::create()->setLabel("compte")->setNbDays(2)->setIsDone())
+            ->addSubTask(Task::create()->setLabel("compte")->setNbDays(2)->setIsDone('2017-07-26'))
             ->addSubTask(Task::create()->setLabel("coordonnées")->setNbDays(2)->setIsCurrent())
             ->addSubTask(Task::create()->setLabel("email & mot de passe")->setNbDays(1))
             ->addSubTask(Task::create()->setLabel("moyens de paiement")->setNbDays(3))
@@ -155,24 +155,25 @@ $todo = TodoList::create()->addTaskList(
 
         tr.done td {
             text-decoration: line-through;
-            background: black;
-            color: gray;
+            background: #45ff00;
+            color: black;
         }
 
         tr.current td {
-            background: #97be39;
+            background: #41749f;
             color: white;
         }
 
-        .current-color {
-            background: #97be39;
+        .done-color {
+            background: #45ff00;
             padding: 5px;
         }
 
-        .done-color {
-            background: black;
+        .current-color {
+            background: #41749f;
             padding: 5px;
         }
+
 
     </style>
 </head>
@@ -184,8 +185,9 @@ $todo = TodoList::create()->addTaskList(
 
 
 <p>
-    Cette page sera mise à jour chaque soir jusqu'à la mise en production du site.<br>
-    Chaque fois qu'une tâche sera exécutée, elle sera barrée et mise de cette couleur <span class="done-color">&nbsp;</span>, de manière à ce que nous puissions estimer la progression
+    Cette page sera mise en temps réel jusqu'à la mise en production du site.<br>
+    Chaque fois qu'une tâche sera exécutée, elle sera barrée et mise de cette couleur <span
+            class="done-color">&nbsp;</span>, de manière à ce que nous puissions estimer la progression
     et la quantité de travail restant.<br>
     Les tâches ne sont pas nécessairement exécutées dans l'ordre.<br>
     La tâche en cours d'exécution aura un fond de cette couleur: <span class="current-color">&nbsp;</span>
@@ -208,6 +210,7 @@ $todo = TodoList::create()->addTaskList(
             <th>Nombre de jours estimés</th>
             <th>Commentaire</th>
             <th>Ajoutée le</th>
+            <th>Terminée le</th>
             <th>Développeur</th>
         </tr>
         <?php foreach ($taskList->getTasks() as $task):
@@ -225,6 +228,7 @@ $todo = TodoList::create()->addTaskList(
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
             </tr>
             <?php foreach ($task->getSubTasks() as $subTask):
                 $sDone = (true === $subTask->isDone()) ? 'done' : '';
@@ -236,6 +240,7 @@ $todo = TodoList::create()->addTaskList(
                     <td><?php echo $subTask->getTotalNbDays(); ?></td>
                     <td><?php echo $subTask->getComment(); ?></td>
                     <td><?php echo $subTask->getDateAdded(); ?></td>
+                    <td><?php echo $subTask->getDateDone(); ?></td>
                     <td><?php echo $subTask->getDev(); ?></td>
                 </tr>
             <?php endforeach; ?>
@@ -247,14 +252,18 @@ $todo = TodoList::create()->addTaskList(
                 <td><?php echo $task->getTotalNbDays(); ?></td>
                 <td><?php echo $task->getComment(); ?></td>
                 <td><?php echo $task->getDateAdded(); ?></td>
+                <td><?php echo $task->getDateDone(); ?></td>
                 <td><?php echo $task->getDev(); ?></td>
             </tr>
         <?php endif; ?>
         <?php endforeach; ?>
     </table>
 <?php endforeach; ?>
+
+
 </body>
 </html>
+
 
 ```
 
@@ -264,6 +273,11 @@ $todo = TodoList::create()->addTaskList(
 
 History Log
 ------------------
+    
+- 1.1.0 -- 2017-07-27
+
+    - change Task.setIsDone now takes a date as its argument
+    - add Task.getDoneDate method
     
 - 1.0.0 -- 2017-07-27
 

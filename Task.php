@@ -11,13 +11,13 @@ class Task
     private $_subtasks;
     private $_comment;
     private $_dateAdded;
-    private $_isDone;
+    private $_doneDate;
 
     public function __construct()
     {
         $this->_dev = 'ling';
         $this->_isCurrent = false;
-        $this->_isDone = false;
+        $this->_doneDate = null;
         $this->_subtasks = [];
         $this->_dateAdded = "2017-07-26";
     }
@@ -69,11 +69,22 @@ class Task
         return $this;
     }
 
-    public function setIsDone($isDone = true)
+    public function setIsDone($doneDate = null)
     {
-        $this->_isDone = $isDone;
+        if (null === $doneDate) {
+            $doneDate = '0000-00-00';
+        }
+        $this->_doneDate = $doneDate;
         return $this;
     }
+
+    public function getDateDone()
+    {
+        return $this->_doneDate;
+    }
+
+
+
 
 
 
@@ -171,7 +182,7 @@ class Task
             }
             return true;
         } else {
-            return $this->_isDone;
+            return (null !== $this->_doneDate);
         }
     }
 }
