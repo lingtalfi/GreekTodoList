@@ -19,7 +19,7 @@ class Task
         $this->_isCurrent = false;
         $this->_doneDate = null;
         $this->_subtasks = [];
-        $this->_dateAdded = "2017-07-26";
+        $this->_dateAdded = null;
     }
 
     public static function create()

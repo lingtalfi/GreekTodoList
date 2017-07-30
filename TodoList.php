@@ -1,14 +1,13 @@
 <?php
 
 
-
 namespace GreekTodoList;
-
 
 
 class TodoList
 {
     private $taskLists;
+    private $startDate;
 
     public function __construct()
     {
@@ -26,7 +25,7 @@ class TodoList
         return $this;
     }
 
-    public function getNbTotalDays($ignoreDoneDays=false)
+    public function getNbTotalDays($ignoreDoneDays = false)
     {
         $n = 0;
         foreach ($this->taskLists as $list) {
@@ -45,5 +44,29 @@ class TodoList
     public function getTaskLists()
     {
         return $this->taskLists;
+    }
+
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    public function getEstimatedEndDate()
+    {
+        if (null === $this->startDate) {
+            return null;
+        }
+        $time = strtotime($this->startDate);
+        $time += 86400 * $this->getNbTotalDays();
+        return date("Y-m-d", $time);
     }
 }

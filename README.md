@@ -274,6 +274,10 @@ $todo = TodoList::create()->addTaskList(
 History Log
 ------------------
     
+- 1.2.0 -- 2017-07-30
+
+    - add TodoList.getStartDate and TodoList.getEstimatedEndDate methods
+    
 - 1.1.0 -- 2017-07-27
 
     - change Task.setIsDone now takes a date as its argument
