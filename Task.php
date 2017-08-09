@@ -11,6 +11,7 @@ class Task
     private $_subtasks;
     private $_comment;
     private $_dateAdded;
+    private $_dateStarted;
     private $_doneDate;
 
     public function __construct()
@@ -20,6 +21,7 @@ class Task
         $this->_doneDate = null;
         $this->_subtasks = [];
         $this->_dateAdded = null;
+        $this->_dateStarted = null;
     }
 
     public static function create()
@@ -66,6 +68,12 @@ class Task
     public function setDateAdded($dateAdded)
     {
         $this->_dateAdded = $dateAdded;
+        return $this;
+    }
+
+    public function setDateStarted($dateStarted)
+    {
+        $this->_dateStarted = $dateStarted;
         return $this;
     }
 
@@ -164,6 +172,14 @@ class Task
     public function getDateAdded()
     {
         return $this->_dateAdded;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateStarted()
+    {
+        return $this->_dateStarted;
     }
 
     public function isParent()

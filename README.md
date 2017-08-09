@@ -274,6 +274,10 @@ $todo = TodoList::create()->addTaskList(
 History Log
 ------------------
     
+- 1.3.0 -- 2017-08-09
+
+    - add Task.dateStarted property
+    
 - 1.2.0 -- 2017-07-30
 
     - add TodoList.getStartDate and TodoList.getEstimatedEndDate methods
