@@ -60,13 +60,13 @@ class TodoList
         return $this->startDate;
     }
 
-    public function getEstimatedEndDate()
+    public function getEstimatedEndDate($ignoreDoneDays = false)
     {
         if (null === $this->startDate) {
             return null;
         }
         $time = strtotime($this->startDate);
-        $time += 86400 * $this->getNbTotalDays();
+        $time += 86400 * $this->getNbTotalDays($ignoreDoneDays);
         return date("Y-m-d", $time);
     }
 }
