@@ -1,7 +1,7 @@
 <?php
 
 
-namespace GreekTodoList;
+namespace Ling\GreekTodoList;
 
 class TaskList
 {

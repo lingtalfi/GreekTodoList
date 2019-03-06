@@ -13,7 +13,7 @@ Install
 ==========
 Using the [uni](https://github.com/lingtalfi/universe-naive-importer) command.
 ```bash
-uni import GreekTodoList
+uni import Ling/GreekTodoList
 ```
 
 Or just download it and place it where you want otherwise.
@@ -57,9 +57,9 @@ Here is the real life example which originated the creation of the GreekTodoList
 <?php
 
 
-use GreekTodoList\Task;
-use GreekTodoList\TaskList;
-use GreekTodoList\TodoList;
+use Ling\GreekTodoList\Task;
+use Ling\GreekTodoList\TaskList;
+use Ling\GreekTodoList\TodoList;
 
 
 require_once __DIR__ . "/../boot.php";
